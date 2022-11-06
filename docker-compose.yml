@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+  ws-server:
+    image: ws-server
+    build:
+      context: ./api_server
+    restart: always
+    # depends_on:
+      # - mongo
+      # - broker
+    environment:
+      - MONGO_USERNAME=root
+      - MONGO_PASSWORD=example
+      - MONGO_SERVICE=mongo
+      - BROKER_HOST=ws-broker
+    # limit logs
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+
+  # mongo:
+  #   restart: always
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: root
+  #     MONGO_INITDB_ROOT_PASSWORD: example
+  #   volumes:
+  #     # Set mondo db storage voulume name.
+  #     - mongo-db-dep:/data/db
+  #   # limit logs
+  #   logging:
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "3"
+  
+  # client:
+  #   image: client-umi-dep
+  #   build: 
+  #     context: ./my_umi_app
+  #   restart: always
+  #   # limit logs
+  #   logging:
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "3"
+  
+  # ws-broker:
+  #   image: ws-broker
+  #   build:
+  #     context: ./broker
+  #   restart: always
+  #   # limit logs
+  #   logging:
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "3"
+# volumes:
+#   mongo-db-dep:
+networks:
+  default:
+    name: admin-dashboard-dep_default
+    external: true
+# networks:
+#   my_network:
+#     driver: bridge

@@ -1,0 +1,58 @@
+version: "3"
+
+services:
+  ws-server:
+    build:
+      dockerfile: Dockerfile-dev
+      args:
+        PORT: ${PORT}
+    ports:
+      - "4004:4004"
+    command: yarn run dev
+    environment:
+      - PORT=4004
+      - CLIENT_URL=http://113.161.225.11:4003
+      - BROKER_PORT=4005
+      - MONGO_URL=mongodb://root:example@mongo:27017/weatherstation?authSource=admin
+      - MONGO_CLIENT_URL=mongodb://root:example@mongo:27017
+    # bind mount
+    volumes:
+      - ./api_server:/mern-app/server
+      - /mern-app/server/node_modules
+
+  # mongo:
+  #   image: mongo:4.4.6
+  #   ports:
+  #     - 27017:27017
+    # command: mongod --port 3006
+
+  # client:
+  #   build:
+  #     dockerfile: Dockerfile-dev
+  #     args:
+  #       PORT: ${PORT}
+  #   environment:
+  #     - PORT=3003
+  #     - UMI_APP_API_URL=http://113.161.225.11:4004
+  #     # - UMI_APP_DEV_CONTAINER=dev_prop
+  #   ports:
+  #     - "3003:3003"
+  #   command: yarn start
+  #   # bind mount
+  #   volumes:
+  #     - ./my_umi_app:/mern-app/client
+  #     - /mern-app/client/node_modules
+  # ws-broker:
+  #   build:
+  #     dockerfile: Dockerfile-dev
+  #     args:
+  #       PORT: ${PORT}
+  #   ports:
+  #     - 4005:4005
+  #   command: yarn run dev
+  #   environment:
+  #     - PORT=4005
+  #   # bind mount
+  #   volumes:
+  #     - ./broker:/mern-app/broker
+  #     - /mern-app/broker/node_modules

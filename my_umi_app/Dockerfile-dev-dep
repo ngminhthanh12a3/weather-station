@@ -1,0 +1,30 @@
+FROM node:16 as build
+
+WORKDIR /mern-app/client
+
+COPY package.json .
+# COPY yarn.lock .
+
+# install node_modules
+# RUN npm i -g yarn@latest 
+RUN yarn
+
+
+# copy all compoent
+COPY . .
+
+# Listen port.
+ARG PORT
+EXPOSE $PORT
+
+# Run CMD.
+RUN ["yarn", "build"]
+
+FROM nginx:1.23-alpine
+COPY --from=build /mern-app/client/dist /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
