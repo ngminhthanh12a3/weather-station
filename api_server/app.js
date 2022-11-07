@@ -39,7 +39,7 @@ app.use(
   cors({
     origin: [
       process.env.CLIENT_URL || "http://localhost:3000",
-      "http://10.10.10.23:3000","http://vnptiot.duckdns.org:3003","https://vnptiot.duckdns.org:3003","http://vnptiot.duckdns.org","https://vnptiot.duckdns.org",
+      "https://vnptws.duckdns.org","https://www.vnptws.duckdns.org",
       "http://localhost:4003"
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
@@ -83,7 +83,7 @@ app.use("/test", (req, res, next) => {
 });
 
 app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", ["https://vnptiot.duckdns.org", "http://localhost:4003"]);
+  res.setHeader("Access-Control-Allow-Origin", ["https://vnptws.duckdns.org, https://www.vnptws.duckdns.org"]);
   res.setHeader("Access-Control-Allow-Methods", ["GET", "POST", "PUT", "DELETE"]);
   res
     // .setHeader(

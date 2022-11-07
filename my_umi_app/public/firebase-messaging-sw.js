@@ -81,14 +81,14 @@ importScripts('https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js')
 // your app's Firebase config object.
 // https://firebase.google.com/docs/web/setup#config-object
 firebase.initializeApp({
-    apiKey: "AIzaSyARG5SuaBFkyxXjyHBGzzGMH30cq4LrELo",
+  apiKey: "AIzaSyARG5SuaBFkyxXjyHBGzzGMH30cq4LrELo",
   authDomain: "vnpt-web-push.firebaseapp.com",
   databaseURL: "https://vnpt-web-push-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "vnpt-web-push",
   storageBucket: "vnpt-web-push.appspot.com",
   messagingSenderId: "784077660924",
-  appId: "1:784077660924:web:d2045125b517029d1fed79",
-  measurementId: "G-QQYF7PNY6H"
+  appId: "1:784077660924:web:279f40bd28cbce461fed79",
+  measurementId: "G-CB0MYN14NE"
 });
 
 // Retrieve an instance of Firebase Messaging so that it can handle background

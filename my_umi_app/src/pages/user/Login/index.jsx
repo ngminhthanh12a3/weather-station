@@ -83,7 +83,7 @@ const Login = () => {
         <LoginForm
           submitter={{ searchConfig: { submitText: 'Submit', restText: 'Submit' } }}
           logo={<img alt="logo" src="/logo.svg" />}
-          title="Admin Dashboard"
+          title="Weather Station"
           subTitle={intl.formatMessage({
             id: 'pages.layouts.userLayout.title',
           })}

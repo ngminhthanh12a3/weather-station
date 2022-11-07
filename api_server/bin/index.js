@@ -27,9 +27,7 @@ const io = new Server(server, {
   cors: {
     origin: [
       process.env.CLIENT_URL || "http://localhost:3000",
-      "http://vnptiot.duckdns.org:3003",
-      "https://vnptiot.duckdns.org:3003",
-      ,"http://vnptiot.duckdns.org","https://vnptiot.duckdns.org","http://localhost:4003"
+      ,"https://www.vnptws.duckdns.org","https://vnptws.duckdns.org","http://localhost:4003"
     ],
     credentials: true,
   },

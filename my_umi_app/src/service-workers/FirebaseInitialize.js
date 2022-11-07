@@ -14,8 +14,8 @@ const firebaseConfig = {
   projectId: "vnpt-web-push",
   storageBucket: "vnpt-web-push.appspot.com",
   messagingSenderId: "784077660924",
-  appId: "1:784077660924:web:d2045125b517029d1fed79",
-  measurementId: "G-QQYF7PNY6H"
+  appId: "1:784077660924:web:279f40bd28cbce461fed79",
+  measurementId: "G-CB0MYN14NE"
 };
 
 // Initialize Firebase

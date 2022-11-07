@@ -18,7 +18,7 @@ export const API_DELETE_TEMP_FMC_TOKEN_PATH = '/api/FMCToken'
 const API_OTA_FIELDS_PATH = 'deviceapi/fields';
 
 // console.log(process.env.UMI_APP_API_URL)
-export const API_URL = process.env.UMI_APP_API_URL || 'https://api-vnptiot.duckdns.org';
+export const API_URL = process.env.UMI_APP_API_URL || 'https://api-vnptws.duckdns.org';
 export const API_SIGNIN_URL = `${API_URL}/${API_SIGNIN_PATH}`;
 export const API_UPLOAD_FILE_URL = `${API_URL}/${API_UPLOAD_FILE_PATH}`;
 export const API_DEVICE_INFO_LOAD_URL = `${API_URL}/${API_DEVICE_INFO_LOAD_PATH}`;
