@@ -17,17 +17,17 @@ export default () => {
     withCredentials: true,
   });
   useEffect(async () => {
-    const firstFormatDeviceInfo = await requestToAPI(
+    const firstDeviceInfo = await requestToAPI(
       API_DEVICE_INFO_LOAD_URL,
       API_Inits({ method: 'GET' }),
     );
-    const firstDeformatDeviceInfo = getDeformatData(firstFormatDeviceInfo);
+    // const firstDeformatDeviceInfo = getDeformatData(firstFormatDeviceInfo);
     // console.log(firstDeformatDeviceInfo);
-    setDeviceInfo(firstDeformatDeviceInfo);
+    setDeviceInfo(firstDeviceInfo);
 
-    socket.on('encryptDT', (deformatMessage) => {
-      const formatMessage = getDeformatData(deformatMessage);
-      updateDeviceInfo(formatMessage);
+    socket.on('encryptDT', (Message) => {
+      // const formatMessage = getDeformatData(Message);
+      updateDeviceInfo(Message);
       TableactionRef.current?.reload();
     });
     socket.on('notification', (noti_message) => {

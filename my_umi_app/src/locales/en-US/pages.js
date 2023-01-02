@@ -1,5 +1,5 @@
 export default {
-  'pages.layouts.userLayout.title': 'Admin Dashboard',
+  'pages.layouts.userLayout.title': 'Environmental Monitoring',
   'pages.login.accountLogin.tab': 'Account Login',
   'pages.login.accountLogin.errorMessage': 'Incorrect username/password',
   'pages.login.failure': 'Login failed, please try again!',

@@ -8,5 +8,7 @@ module.exports = (payload) => {
         // console.error("CC20-P1305 Tag error!");
         // console.log("decr", decryptJSON)
     }
+
+    // console.log(decryptJSON)
     return decryptJSON
 }

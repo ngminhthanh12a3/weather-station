@@ -27,7 +27,10 @@ module.exports = (chacha20DecryptValue, devID) => {
     if (chacha20DecryptValue[devID]) {
 
       const UPDATE_JSON = { devID, ...chacha20DecryptValue[devID] };
-      clearBitFromFormatData(UPDATE_JSON, 0x1, 1, "status");
+
+      // clearBitFromFormatData(UPDATE_JSON, 0x1, 1, "status");
+      UPDATE_JSON["wifi_status"] = "DEACTIVE";
+
       // const ENCRYPT_BUFFER = Uint8Array.from(JSON.stringify(UPDATE_JSON))
       const UPDATE_JSON_STRING = JSON.stringify(UPDATE_JSON);
       const UPDATE_JSON_BUFFER = new Uint8Array(UPDATE_JSON_STRING.length);
@@ -36,7 +39,7 @@ module.exports = (chacha20DecryptValue, devID) => {
       for await (let CHAR of UPDATE_JSON_STRING)
         UPDATE_JSON_BUFFER[i++] = CHAR.charCodeAt(0);
       
-      // console.log(UPDATE_JSON_BUFFER);
+      console.log("UPDATE_JSON_BUFFER: ", UPDATE_JSON_BUFFER);
       const ENCRYPT_JSON = await chacha20DecryptHandler(UPDATE_JSON_BUFFER, false, true);
       
       publishToBroker('esp/publish', ENCRYPT_JSON);

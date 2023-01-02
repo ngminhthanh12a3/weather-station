@@ -39,7 +39,8 @@ app.use(
   cors({
     origin: [
       process.env.CLIENT_URL || "http://localhost:3000",
-      "https://vnptws.duckdns.org","https://www.vnptws.duckdns.org",
+      "https://vnptws.duckdns.org",
+      "https://www.vnptws.duckdns.org",
       "http://localhost:4003"
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],

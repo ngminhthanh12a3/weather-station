@@ -88,7 +88,7 @@ export default defineConfig({
           name: 'Monitor',
           icon: 'smile',
           path: '/dashboard/monitor',
-          access: 'canDevAdmin',
+          access: 'canDev',
           component: './dashboard/monitor',
         },
         {

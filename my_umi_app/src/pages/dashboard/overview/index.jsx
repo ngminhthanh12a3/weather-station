@@ -10,6 +10,7 @@ import UpdateForm from './components/UpdateForm';
 import { addRule, updateRule, removeRule } from './service';
 import { API_SET_BROKER_REQUEST_URL, API_SEND_CUSTOM_BROKER_REQUEST_URL } from '@/constants';
 import { API_Inits, requestToAPI } from '@/handlers';
+import numeral from 'numeral';
 
 const { Text } = Typography;
 /**
@@ -104,52 +105,7 @@ const ResetDevice = async (record) => {
   }
 };
 
-const expandedRow_Column = [
-  {
-    title: 'Temperature Warning',
-    dataIndex: 'temperature_warning',
-    key: 'temperature_warning',
-    render: (dom) => {
-      return <Text type={TEMPERATURE_WARN_TEXT_TYPE[dom]}>{dom}</Text>;
-    },
-  },
-  {
-    title: 'Relay Warning 1',
-    dataIndex: 'relay_warning1',
-    key: 'relay_warning1',
-    render: (dom) => {
-      const type = dom.includes('UNAVAILABLE');
-      const textType = type ? 'danger' : 'success';
-      return <Text type={textType}>{dom}</Text>;
-    },
-  },
-  {
-    title: 'Relay Warning 2',
-    dataIndex: 'relay_warning2',
-    key: 'relay_warning1',
-    render: (dom) => {
-      const type = dom.includes('UNAVAILABLE');
-      const textType = type ? 'danger' : 'success';
-      return <Text type={textType}>{dom}</Text>;
-    },
-  },
-  {
-    title: 'Voltage warning 1',
-    dataIndex: 'voltage_warning1',
-    key: 'voltage_warning1',
-    render: (dom) => {
-      return <Text type={VOL_WARNING_TYPE[dom]}>{dom}</Text>;
-    },
-  },
-  {
-    title: 'Voltage warning 2',
-    dataIndex: 'voltage_warning2',
-    key: 'voltage_warning2',
-    render: (dom) => {
-      return <Text type={VOL_WARNING_TYPE[dom]}>{dom}</Text>;
-    },
-  },
-];
+const expandedRow_Column = [];
 const expandedRowRender = (record) => {
   // console.log(record, index, indent, expanded);
   return (
@@ -212,115 +168,6 @@ const TableList = () => {
       valueEnum: WIFI_DYNAMO_ENUM,
     },
     {
-      title: 'Temperature',
-      dataIndex: 'temperature',
-      sorter: true,
-      hideInForm: true,
-      hideInSearch: true,
-      // renderText: (val) => `${val}` + ' &#8451',
-      render: (dom, entity) => {
-        const { temperature_warning } = entity;
-
-        return (
-          <>
-            <Tooltip title={temperature_warning}>
-              <Text type={TEMPERATURE_WARN_TEXT_TYPE[temperature_warning]}>{dom} </Text>℃
-            </Tooltip>
-          </>
-        );
-      },
-    },
-    {
-      title: 'Relay 1',
-      dataIndex: 'status1',
-      hideInForm: true,
-      filters: true,
-      hideInSearch: true,
-      onFilter: true,
-      render: (dom, entity) => {
-        const { status1 } = entity;
-        return (
-          <Button
-            onClick={() => {
-              SetStatusState(entity, 'status1');
-            }}
-            type={StatusesType[status1]}
-          >
-            {dom}
-          </Button>
-        );
-      },
-    },
-    {
-      title: 'Relay 2',
-      dataIndex: 'status2',
-      hideInForm: true,
-      hideInSearch: true,
-      filters: true,
-      onFilter: true,
-      render: (dom, entity) => {
-        const { status2 } = entity;
-        return (
-          <Button
-            onClick={() => {
-              SetStatusState(entity, 'status2');
-            }}
-            type={StatusesType[status2]}
-          >
-            {dom}
-          </Button>
-        );
-      },
-    },
-    {
-      title: 'Current 1',
-      dataIndex: 'current1',
-      sorter: true,
-      hideInForm: true,
-      hideInSearch: true,
-      renderText: (val) => `${val} (A)`,
-    },
-    {
-      title: 'Current 2',
-      dataIndex: 'current2',
-      sorter: true,
-      hideInForm: true,
-      hideInSearch: true,
-      renderText: (val) => `${val} (A)`,
-    },
-    {
-      title: 'Voltage 1',
-      dataIndex: 'voltage1',
-      sorter: true,
-      hideInForm: true,
-      hideInSearch: true,
-      // renderText: (val) => `${val}` + ' &#8451',
-      render: (dom, entity) => {
-        const { voltage_warning1 } = entity;
-        return (
-          <Tooltip title={voltage_warning1}>
-            <Text type={VOL_WARNING_TYPE[voltage_warning1]}>{dom}</Text> (V)
-          </Tooltip>
-        );
-      },
-    },
-    {
-      title: 'Voltage 2',
-      dataIndex: 'voltage2',
-
-      sorter: true,
-      hideInForm: true,
-      hideInSearch: true,
-      render: (dom, entity) => {
-        const { voltage_warning2 } = entity;
-        return (
-          <Tooltip title={voltage_warning2}>
-            <Text type={VOL_WARNING_TYPE[voltage_warning2]}>{dom}</Text> (V)
-          </Tooltip>
-        );
-      },
-    },
-    {
       title: 'Dynamo Status',
       dataIndex: 'dynamo_status',
       key: 'dynamo_status',
@@ -328,6 +175,73 @@ const TableList = () => {
       filters: true,
       onFilter: true,
     },
+
+    //
+    {
+      title: 'C02',
+      dataIndex: 'C02',
+      key:'C02',
+      renderText: (dom) => {
+        return dom + ' ppm';
+      }
+    },
+    {
+      title: 'CH20',
+      dataIndex: 'CH20',
+      key:'CH20',
+      renderText: (dom) => {
+        return dom + ' ug/m³';
+      }
+    },
+    {
+      title: 'TVOC',
+      dataIndex: 'TVOC',
+      key:'TVOC',
+      renderText: (dom) => {
+        return dom + ' ug/m³';
+      }
+    },
+    {
+      title: 'PM2.5',
+      dataIndex: 'PM2.5',
+      key:'PM2.5',
+      renderText: (dom) => {
+        return dom + ' ug/m³';
+      }
+    },
+    {
+      title: 'PM10',
+      dataIndex: 'PM10',
+      key:'PM10',
+      renderText: (dom) => {
+        return dom + ' ug/m³';
+      }
+    },
+    {
+      title: 'Temperature',
+      dataIndex: 'Temperature',
+      key:'Temperature',
+      renderText: (dom) => {
+        return dom + ' ℃';
+      }
+    },
+    {
+      title: 'Humidity',
+      dataIndex: 'Humidity',
+      key:'Humidity',
+      renderText: (dom) => {
+        return dom + ' %';
+      }
+    },
+    {
+      title: 'Noise',
+      dataIndex: 'Noise',
+      key:'Noise',
+      renderText: (dom) => {
+        return numeral(dom).format('0.00') + ' dB';
+      }
+    },
+    //
     {
       title: 'Functions',
       dataIndex: 'option',
@@ -341,16 +255,16 @@ const TableList = () => {
         >
           Reset
         </a>,
-        <a
-          key="monitor"
-          onClick={() => {
-            setCurrentSelectDevice(record.devID);
-            const monitorPath = '/dashboard/monitor';
-            history.push(monitorPath);
-          }}
-        >
-          Monitor
-        </a>,
+        // <a
+        //   key="monitor"
+        //   onClick={() => {
+        //     setCurrentSelectDevice(record.devID);
+        //     const monitorPath = '/dashboard/monitor';
+        //     history.push(monitorPath);
+        //   }}
+        // >
+        //   Monitor
+        // </a>,
       ],
     },
   ];
@@ -372,7 +286,7 @@ const TableList = () => {
           },
         }}
         scroll={{ x: 1300 }}
-        expandable={{ expandedRowRender }}
+        // expandable={{ expandedRowRender }}
         form={{
           // 由于配置了 transform，提交的参与与定义的不同这里需要转化一下
           syncToUrl: (values, type) => {

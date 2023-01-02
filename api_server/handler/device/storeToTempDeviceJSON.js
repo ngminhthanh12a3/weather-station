@@ -13,6 +13,7 @@ module.exports = (decryptJSON) => {
   chacha20DecryptValue[devID] = { ...propsJSON };
 
   // fix error for DEACTIVE device
-  if(getBitFromFormatData(decryptJSON["status"], 0x1, 1))
+  // if(getBitFromFormatData(decryptJSON["status"], 0x1, 1))
+  if(decryptJSON["wifi_status"] == "ACTIVE")
     handleDeviceJSONStatus(chacha20DecryptValue, devID);
 };

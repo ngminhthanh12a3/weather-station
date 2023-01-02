@@ -45,7 +45,7 @@ const start = async () => {
     // console.log(JSON_DATA)
     if(Object.keys(JSON_DATA).length)
     {
-        // console.log(decryptJSON)
+        // console.log(JSON_DATA)
         handleDecryptValue(JSON_DATA);
         // console.log("Decrypt data: ", decryptJSON);
         const { devID, ...props } = JSON_DATA;
@@ -60,36 +60,13 @@ const start = async () => {
     }
     else
     {
-      // CC20-P1305
-      // const [decryptJSON = {}, authTag = false] = CC20_P1305_decrypt_handler(payload, "1")
-      // if(authTag)
-      // {
-      //   // console.log(decryptJSON)
-      //   handleDecryptValue(decryptJSON);
-      //   // console.log("Decrypt data: ", decryptJSON);
-      //   const { devID, ...props } = decryptJSON;
-    
-      //   handleDeviceInfoAnalysis(devID, props);
-    
-      //   const emitJSON = {};
-      //   emitJSON[devID] = props;
-    
-      //   // emit to clients
-      //   emitToClient(emitJSON, "encryptDT"); //
-      // }
-      // else
-      // {
-      //   console.log("Tag unmatched!!!")
-      // }
-      // const decryptJSON = chacha20DecryptHandler(payload, "1");
-      
       // ChaCha20 only
-      const START_DECRYPT_TIME = performance.now();
+      // const START_DECRYPT_TIME = performance.now();
       const decryptJSON = chacha20DecryptHandler(payload, "1");
       // console.log(decryptJSON);
       if (Object.keys(decryptJSON).length)
       {
-        const DECRYPT_TIME = performance.now() - START_DECRYPT_TIME;
+        // const DECRYPT_TIME = performance.now() - START_DECRYPT_TIME;
         // console.log("\n     - Decrypt time: ", DECRYPT_TIME, " ms");
         
         handleDecryptValue(decryptJSON);

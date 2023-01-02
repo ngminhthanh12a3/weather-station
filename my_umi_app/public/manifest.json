@@ -1,6 +1,6 @@
 {
-  "name": "Admin Dashboard",
-  "short_name": "Admin Dashboard",
+  "name": "Environmental Monitoring",
+  "short_name": "Environmental Monitoring",
   "display": "standalone",
   "start_url": "./?utm_source=homescreen",
   "theme_color": "#002140",
