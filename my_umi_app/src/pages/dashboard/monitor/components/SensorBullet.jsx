@@ -49,7 +49,7 @@ export default ({ sensorData = {} }) => {
     {
       title: 'Noise',
       ranges: [75, 120],
-      measures: [sensorData['Humidity']],
+      measures: [sensorData['Noise']],
       limit: [120],
     },
   ]; // @TODO 差一张垂直方向的缩略图
