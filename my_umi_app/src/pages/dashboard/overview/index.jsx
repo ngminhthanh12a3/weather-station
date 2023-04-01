@@ -180,66 +180,74 @@ const TableList = () => {
     {
       title: 'C02',
       dataIndex: 'C02',
-      key:'C02',
+      key: 'C02',
       renderText: (dom) => {
         return dom + ' ppm';
-      }
+      },
+      hideInSearch: true,
     },
     {
       title: 'CH20',
       dataIndex: 'CH20',
-      key:'CH20',
+      key: 'CH20',
       renderText: (dom) => {
         return dom + ' ug/m³';
-      }
+      },
+      hideInSearch: true,
     },
     {
       title: 'TVOC',
       dataIndex: 'TVOC',
-      key:'TVOC',
+      key: 'TVOC',
       renderText: (dom) => {
         return dom + ' ug/m³';
-      }
+      },
+      hideInSearch: true,
     },
     {
       title: 'PM2.5',
       dataIndex: 'PM2.5',
-      key:'PM2.5',
+      key: 'PM2.5',
       renderText: (dom) => {
         return dom + ' ug/m³';
-      }
+      },
+      hideInSearch: true,
     },
     {
       title: 'PM10',
       dataIndex: 'PM10',
-      key:'PM10',
+      key: 'PM10',
       renderText: (dom) => {
         return dom + ' ug/m³';
-      }
+      },
+      hideInSearch: true,
     },
     {
       title: 'Temperature',
       dataIndex: 'Temperature',
-      key:'Temperature',
+      key: 'Temperature',
       renderText: (dom) => {
         return dom + ' ℃';
-      }
+      },
+      hideInSearch: true,
     },
     {
       title: 'Humidity',
       dataIndex: 'Humidity',
-      key:'Humidity',
+      key: 'Humidity',
       renderText: (dom) => {
         return dom + ' %';
-      }
+      },
+      hideInSearch: true,
     },
     {
       title: 'Noise',
       dataIndex: 'Noise',
-      key:'Noise',
+      key: 'Noise',
       renderText: (dom) => {
         return numeral(dom).format('0.00') + ' dB';
-      }
+      },
+      hideInSearch: true,
     },
     //
     {
@@ -266,6 +274,7 @@ const TableList = () => {
         //   Monitor
         // </a>,
       ],
+      hideInSearch: true,
     },
   ];
   return (

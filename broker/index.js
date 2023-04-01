@@ -1,5 +1,5 @@
-const aedes = require("aedes")();
-const server = require("net").createServer(aedes.handle);
+const aedes = require('aedes')();
+const server = require('net').createServer(aedes.handle);
 const port = process.env.PORT || 1883;
 
 const startEvents = () => {
@@ -15,37 +15,32 @@ const startEvents = () => {
         console.log(password);
         return callback(null, false);
       }
-      password = Buffer.from(password, "base64").toString();
-      if (username === "username" && password === "password") {
+      password = Buffer.from(password, 'base64').toString();
+      if (username === 'username' && password === 'password') {
         return callback(null, true);
       }
       const error = new Error(
-        "Authentication Failed!! Invalid user credentials."
+        'Authentication Failed!! Invalid user credentials.'
       );
-      console.log("Error ! Authentication failed.");
+      console.log('Error ! Authentication failed.');
       return callback(error, false);
     };
 
-    const topics = [
-      "esp/publish",
-      "firmware_version",
-      "devID/",
-      "custom_topic/",
-    ];
+    const topics = ['esp/', 'firmware_version', 'devID/', 'custom_topic/'];
     // authorizing client to publish on a message topic
     aedes.authorizePublish = (client, packet, callback) => {
       // check topics
       if (topics.find((topic) => packet.topic.includes(topic))) {
         return callback(null);
       }
-      console.log("Error ! Unauthorized publish to a topic.");
+      console.log('Error ! Unauthorized publish to a topic.');
       return callback(
-        new Error("You are not authorized to publish on this message topic.")
+        new Error('You are not authorized to publish on this message topic.')
       );
     };
 
     // emitted when a client connects to the broker
-    aedes.on("client", function (client) {
+    aedes.on('client', function (client) {
       console.log(
         `[CLIENT_CONNECTED] Client ${
           client ? client.id : client
@@ -63,7 +58,7 @@ const startEvents = () => {
     // });
 
     // emitted when a client subscribes to a message topic
-    aedes.on("subscribe", function (subscriptions, client) {
+    aedes.on('subscribe', function (subscriptions, client) {
       // console.log(
       //   `[TOPIC_SUBSCRIBED] Client ${
       //     client ? client.id : client

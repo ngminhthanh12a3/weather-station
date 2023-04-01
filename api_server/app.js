@@ -84,7 +84,7 @@ app.use("/test", (req, res, next) => {
 });
 
 app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", ["https://vnptws.duckdns.org, https://www.vnptws.duckdns.org"]);
+  res.setHeader("Access-Control-Allow-Origin", ["https://vnptws.duckdns.org, https://www.vnptws.duckdns.org", "http://localhost:4003"]);
   res.setHeader("Access-Control-Allow-Methods", ["GET", "POST", "PUT", "DELETE"]);
   res
     // .setHeader(

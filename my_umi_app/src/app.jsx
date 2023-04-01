@@ -1,6 +1,6 @@
 import { SettingDrawer } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
-import { history, setLocale,  } from 'umi';
+import { history, setLocale } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
 // import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
@@ -73,9 +73,9 @@ export const layout = ({ initialState, setInitialState }) => {
     localStorage.setItem('umi_locale', 'en-US');
   }
   // if(initialState?.currentUser)
-  if(initialState?.currentUser?.access !== "guest")
-    SetupNortification(initialState?.currentUser);
-  
+  // if(initialState?.currentUser?.access !== "guest")
+  //   SetupNortification(initialState?.currentUser);
+
   return {
     rightContentRender: () => <RightContent />,
     disableContentMargin: false,
