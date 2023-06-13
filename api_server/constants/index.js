@@ -13,4 +13,4 @@ exports.deviceInfoAnalysis = {};
 var path = require('path');
 exports.binOTADirname = 'binOTA';
 exports.binOTAPath = path.join(process.cwd(), 'binOTA');
-exports.FILE_FRAME = 4096;
+exports.FILE_FRAME = 16384;
