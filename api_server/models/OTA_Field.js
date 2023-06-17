@@ -23,6 +23,7 @@ var OTA_FieldSchema = mongoose.Schema({
     default: true,
   },
   OTA_FILE_FRAME_LENGTH: { type: Number, default: 0 },
+  OTA_FRAME_SIZE: { type: Number, default: 0 },
 });
 var OTA_Field = mongoose.model("OTA_Field", OTA_FieldSchema);
 

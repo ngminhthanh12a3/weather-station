@@ -59,13 +59,13 @@ const startEvents = () => {
 
     // emitted when a client subscribes to a message topic
     aedes.on('subscribe', function (subscriptions, client) {
-      // console.log(
-      //   `[TOPIC_SUBSCRIBED] Client ${
-      //     client ? client.id : client
-      //   } subscribed to topics: ${subscriptions
-      //     .map((s) => s.topic)
-      //     .join(",")} on broker ${aedes.id}`
-      // );
+      console.log(
+        `[TOPIC_SUBSCRIBED] Client ${
+          client ? client.id : client
+        } subscribed to topics: ${subscriptions
+          .map((s) => s.topic)
+          .join(",")} on broker ${aedes.id}`
+      );
     });
 
     // emitted when a client unsubscribes from a message topic
@@ -80,15 +80,15 @@ const startEvents = () => {
     // });
 
     // emitted when a client publishes a message packet on the topic
-    // aedes.on("publish", async function (packet, client) {
-    //   if (client) {
-    //     console.log(
-    //       `[MESSAGE_PUBLISHED] Client ${
-    //         client ? client.id : "BROKER_" + aedes.id
-    //       } has published message on ${packet.topic} to broker ${aedes.id}`
-    //     );
-    //   }
-    // });
+    aedes.on("publish", async function (packet, client) {
+      if (client) {
+        console.log(
+          `[MESSAGE_PUBLISHED] Client ${
+            client ? client.id : "BROKER_" + aedes.id
+          } has published message on ${packet.topic} to broker ${aedes.id}`
+        );
+      }
+    });
   } catch (error) {
     console.log(error);
     startEvents();

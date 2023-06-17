@@ -55,13 +55,14 @@ export default () => {
             const file = values.dragger[0];
             const data = new FormData();
 
-            const { version, filetype, commit_message, devicetype } = values;
+            const { version, filetype, commit_message, devicetype, frame_size } = values;
             data.append('filetype', filetype);
             data.append('commit_message', commit_message || '');
             data.append('version', version);
             data.append('upload_time', Date.now());
             data.append('devicetype', devicetype);
             // data.append('brokertopic', BrokerTopic)
+            data.append('frame_size', frame_size);
             data.append('bin-file', file.originFileObj);
 
             const { status } = await axios
@@ -209,6 +210,18 @@ export default () => {
           <ProFormDigit
             label="Version"
             name="version"
+            width="sm"
+            // initialValue={defaultVersion || 2.1}
+            // fieldProps={{ step: 0.1 }}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          />
+          <ProFormDigit
+            label="Frame size"
+            name="frame_size"
             width="sm"
             // initialValue={defaultVersion || 2.1}
             // fieldProps={{ step: 0.1 }}

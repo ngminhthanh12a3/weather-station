@@ -11,6 +11,7 @@ module.exports = async (req, res, next) => {
     OTA_CURRENT_FIELDS_NAME = "",
     OTA_ENABLE = true,
     OTA_CURRENT_VERSION = 1.0,
+    OTA_FRAME_SIZE
   } = (await OTA_Field.findOne({
     OTA_FILETYPE: filetype,
     OTA_DEVICE_TYPE: devicetype,
@@ -38,6 +39,7 @@ module.exports = async (req, res, next) => {
     // goto
     if (frame !== undefined) {
       req.query["FILE_PATH"] = binPATH;
+      req.query["FILE_FRAME"] = OTA_FRAME_SIZE;
       return next();
     }
 

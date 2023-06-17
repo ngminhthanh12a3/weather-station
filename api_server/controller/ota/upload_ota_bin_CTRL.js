@@ -10,11 +10,11 @@ module.exports = async (req, res, next) => {
   const {
     OTA_current_fields,
     binOTAPath,
-    FILE_FRAME,
   } = require("../../constants");
   OTA_current_fields.OTA_CURRENT_FIELDS_NAME = file_name;
 
-  const { version: OTA_CURRENT_VERSION } = req.body;
+  const { version: OTA_CURRENT_VERSION, frame_size=8192 } = req.body;
+  console.log("frame size ", frame_size, req.body)
   const nowTime = new Date();
   const OTA_LATES_UPDATE = nowTime.getTime();
 
@@ -23,7 +23,7 @@ module.exports = async (req, res, next) => {
   //
   const FILE_PATH = path.join(binOTAPath, file_name);
   const { size: FILE_SIZE = 0 } = fs.statSync(FILE_PATH);
-  const FILE_SEGMENT_LEN = Math.ceil(FILE_SIZE / FILE_FRAME);
+  const FILE_SEGMENT_LEN = Math.ceil(FILE_SIZE / frame_size);
 
   //   update OTA field
   await storeToDB(
@@ -32,6 +32,7 @@ module.exports = async (req, res, next) => {
       OTA_CURRENT_FIELDS_NAME: file_name,
       ...updateDBData,
       OTA_FILE_FRAME_LENGTH: FILE_SEGMENT_LEN,
+      OTA_FRAME_SIZE: frame_size
     },
     { OTA_FILETYPE: filetype, OTA_DEVICE_TYPE: devicetype }
   );

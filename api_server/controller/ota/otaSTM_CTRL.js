@@ -1,8 +1,8 @@
 const fs = require("fs");
-const { FILE_FRAME } = require("../../constants");
+// const { FILE_FRAME } = require("../../constants");
 
 module.exports = async (req, res, next) => {
-  const { frame, FILE_PATH } = req.query;
+  const { frame, FILE_PATH, FILE_FRAME } = req.query;
   const BYTE_START = frame * FILE_FRAME;
   const BYTE_END = BYTE_START + FILE_FRAME;
   const FILE_BUFFER = await fs.readFileSync(FILE_PATH, { encoding: "binary" });
