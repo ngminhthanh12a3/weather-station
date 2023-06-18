@@ -32,7 +32,7 @@ export default () => {
     OTA_DEVICE_TYPE: DeviceType,
   });
 
-  const { OTA_CURRENT_VERSION } = OTA_FIELD;
+  const { OTA_CURRENT_VERSION, OTA_FRAME_SIZE } = OTA_FIELD;
 
   // const defaultVersion = numeral(OTA_CURRENT_VERSION + 0.1).format('0.0');
   const [visible, setVisible] = useState(false);
@@ -223,7 +223,7 @@ export default () => {
             label="Frame size"
             name="frame_size"
             width="sm"
-            // initialValue={defaultVersion || 2.1}
+            initialValue={OTA_FRAME_SIZE || 0}
             // fieldProps={{ step: 0.1 }}
             rules={[
               {

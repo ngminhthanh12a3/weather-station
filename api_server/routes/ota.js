@@ -49,11 +49,13 @@ var {
   fields_CTRL,
   upload_ota_bin_CTRL,
   otaSTM_CTRL,
+  otaSTMV2_CTRL,
 } = require("../controller");
 // const { version } = require("os");
 
 // const { OTA_Field } = require("../models");
 router.get("/update", otaCTRL, otaSTM_CTRL);
+router.get("/update_v2", otaCTRL, otaSTMV2_CTRL);
 router.post(
   "/upload_ota_bin",
 
