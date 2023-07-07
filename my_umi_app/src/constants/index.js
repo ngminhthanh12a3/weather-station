@@ -13,7 +13,8 @@ const API_DEVICE_INFO_LIST_PATH = 'api/device_info_list';
 const API_GET_BIN_OTA_DIR_LIST_PATH = 'api/bin_ota_dir/load';
 export const API_OPEN_BIN_OTA_DIR_NAME_PATH = '/api/bin_ota_dir/open';
 export const API_DELETE_BIN_OTA_DIR_NAME_PATH = '/api/bin_ota_dir/delete';
-export const API_DELETE_TEMP_FMC_TOKEN_PATH = '/api/FMCToken'
+export const API_DELETE_TEMP_FMC_TOKEN_PATH = '/api/FMCToken';
+export const API_DEVICE_CHART_LOAD_PATH = 'api/device_chart_load';
 
 const API_OTA_FIELDS_PATH = 'deviceapi/fields';
 
@@ -21,6 +22,7 @@ const API_OTA_FIELDS_PATH = 'deviceapi/fields';
 export const API_URL = process.env.UMI_APP_API_URL || 'https://api-vnptws.duckdns.org';
 export const API_SIGNIN_URL = `${API_URL}/${API_SIGNIN_PATH}`;
 export const API_UPLOAD_FILE_URL = `${API_URL}/${API_UPLOAD_FILE_PATH}`;
+export const API_DEVICE_CHART_LOAD_URL = `${API_URL}/${API_DEVICE_CHART_LOAD_PATH}`;
 export const API_DEVICE_INFO_LOAD_URL = `${API_URL}/${API_DEVICE_INFO_LOAD_PATH}`;
 export const API_SET_BROKER_REQUEST_URL = `${API_URL}/${API_SET_BROKER_REQUEST_PATH}`;
 export const API_ANALYSIS_TEMPERATURE_URL = `${API_URL}/${API_ANALYSIS_TEMPERATURE_PATH}`;

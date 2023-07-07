@@ -70,3 +70,73 @@ self.addEventListener('activate', (event) => {
     ),
   );
 });
+
+// Give the service worker access to Firebase Messaging.
+// Note that you can only use Firebase Messaging here. Other Firebase libraries
+// are not available in the service worker.
+importScripts('https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js');
+
+// Initialize the Firebase app in the service worker by passing in
+// your app's Firebase config object.
+// https://firebase.google.com/docs/web/setup#config-object
+firebase.initializeApp({
+  apiKey: 'AIzaSyARG5SuaBFkyxXjyHBGzzGMH30cq4LrELo',
+  authDomain: 'vnpt-web-push.firebaseapp.com',
+  databaseURL: 'https://vnpt-web-push-default-rtdb.asia-southeast1.firebasedatabase.app',
+  projectId: 'vnpt-web-push',
+  storageBucket: 'vnpt-web-push.appspot.com',
+  messagingSenderId: '784077660924',
+  appId: '1:784077660924:web:4206ea16b9b308891fed79',
+  measurementId: 'G-5NN4SNKEHX',
+});
+
+// Retrieve an instance of Firebase Messaging so that it can handle background
+// messages.
+const messaging = firebase.messaging();
+
+// IF WE WANT TO HANDLE BACKGROUND NOTIFICATION WE HAVE TO ADD THE FOLLOWING BLOCK OF CODE AS WELL
+
+messaging.onBackgroundMessage((payload) => {
+  // console.log('[firebase-messaging-sw.js] Received background message ', payload);
+
+  const {
+    body: PAYLOAD_BODY,
+    title: notificationTitle,
+    tag = '',
+  } = payload.data || { body: 'Error', title: 'Error' };
+  // Customize notification here
+  const notificationOptions = {
+    // actions: [
+    //   {
+    //     action: 'Open-action',
+    //     title: 'Open',
+    //     // icon: '/images/demos/action-1-128x128.png',
+    //   }
+    // ],
+    // body: `${(new Date()).toISOString()}\n${(new Date()).toISOString()}\n${(new Date()).toISOString()}`,
+    // body,
+    icon: '/logo.png',
+    tag,
+    renotify: true,
+  };
+  // console.log(self.registration);
+  // console.log(self.navigator)
+  // self.navigator.serviceWorker.ready.then((registration) => {
+  //   registration.showNotification().then(no=>console.log(no))
+  //   return registration.getNotifications()
+  // }).then(notigications => {
+  //   notigications[0].body
+  // })
+
+  self.registration.getNotifications({ tag }).then(async (notifications) => {
+    // do something with your notifications
+    //
+    if (notifications[0])
+      // notificationOptions.body = notifications[0].body + PAYLOAD_BODY;
+      notificationOptions.body = notifications[0].body;
+    else notificationOptions.body = PAYLOAD_BODY;
+
+    await self.registration.showNotification(notificationTitle, notificationOptions);
+  });
+});

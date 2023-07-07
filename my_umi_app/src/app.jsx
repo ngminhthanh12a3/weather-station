@@ -73,8 +73,7 @@ export const layout = ({ initialState, setInitialState }) => {
     localStorage.setItem('umi_locale', 'en-US');
   }
   // if(initialState?.currentUser)
-  // if(initialState?.currentUser?.access !== "guest")
-  //   SetupNortification(initialState?.currentUser);
+  if (initialState?.currentUser?.access !== 'guest') SetupNortification(initialState?.currentUser);
 
   return {
     rightContentRender: () => <RightContent />,

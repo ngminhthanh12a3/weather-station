@@ -13,6 +13,7 @@ import { API_Inits, requestToAPI } from '@/handlers';
 import numeral from 'numeral';
 
 const { Text } = Typography;
+
 /**
  * 更新节点
  *
@@ -124,7 +125,7 @@ const expandedRowRender = (record) => {
 };
 
 const TableList = () => {
-  const { TableactionRef } = useModel('deviceInfo');
+  const { TableactionRef, sensorEnum } = useModel('deviceInfo');
   const { rule } = useModel('deviceInfoList');
   const { setCurrentSelectDevice, currentSelectDevice } = useModel('currentSelectDevice');
   /** 新建窗口的弹窗 */
@@ -138,6 +139,9 @@ const TableList = () => {
   const ProDescriptions_TableactionRef = useRef();
   /** 国际化配置 */
 
+  /**
+   * @type {import('@ant-design/pro-table').ProTableProps['columns']} colums
+   */
   const columns = [
     {
       title: 'devID',
@@ -175,108 +179,28 @@ const TableList = () => {
       filters: true,
       onFilter: true,
     },
+  ].concat(
+    Object.keys(sensorEnum).map((index) => ({
+      title: sensorEnum[index].title,
+      dataIndex: index,
+      key: index,
+      hideInSearch: true,
+      render: (text) => {
+        const type =
+          text < sensorEnum[index].safeZone[0] || text > sensorEnum[index].safeZone[1]
+            ? 'danger'
+            : 'success';
 
-    //
-    {
-      title: 'C02',
-      dataIndex: 'C02',
-      key: 'C02',
-      renderText: (dom) => {
-        return dom + ' ppm';
+        if (index === 'Noise') text = numeral(text).format('0.00');
+        // console.log(index, text);
+        return (
+          <>
+            <Text type={type}>{text + ' ' + sensorEnum[index].unit}</Text>
+          </>
+        );
       },
-      hideInSearch: true,
-    },
-    {
-      title: 'CH20',
-      dataIndex: 'CH20',
-      key: 'CH20',
-      renderText: (dom) => {
-        return dom + ' ug/m³';
-      },
-      hideInSearch: true,
-    },
-    {
-      title: 'TVOC',
-      dataIndex: 'TVOC',
-      key: 'TVOC',
-      renderText: (dom) => {
-        return dom + ' ug/m³';
-      },
-      hideInSearch: true,
-    },
-    {
-      title: 'PM2.5',
-      dataIndex: 'PM2.5',
-      key: 'PM2.5',
-      renderText: (dom) => {
-        return dom + ' ug/m³';
-      },
-      hideInSearch: true,
-    },
-    {
-      title: 'PM10',
-      dataIndex: 'PM10',
-      key: 'PM10',
-      renderText: (dom) => {
-        return dom + ' ug/m³';
-      },
-      hideInSearch: true,
-    },
-    {
-      title: 'Temperature',
-      dataIndex: 'Temperature',
-      key: 'Temperature',
-      renderText: (dom) => {
-        return dom + ' ℃';
-      },
-      hideInSearch: true,
-    },
-    {
-      title: 'Humidity',
-      dataIndex: 'Humidity',
-      key: 'Humidity',
-      renderText: (dom) => {
-        return dom + ' %';
-      },
-      hideInSearch: true,
-    },
-    {
-      title: 'Noise',
-      dataIndex: 'Noise',
-      key: 'Noise',
-      renderText: (dom) => {
-        return numeral(dom).format('0.00') + ' dB';
-      },
-      hideInSearch: true,
-    },
-    //
-    {
-      title: 'Functions',
-      dataIndex: 'option',
-      valueType: 'option',
-      render: (_, record) => [
-        <a
-          key="reset"
-          onClick={() => {
-            ResetDevice(record);
-          }}
-        >
-          Reset
-        </a>,
-        // <a
-        //   key="monitor"
-        //   onClick={() => {
-        //     setCurrentSelectDevice(record.devID);
-        //     const monitorPath = '/dashboard/monitor';
-        //     history.push(monitorPath);
-        //   }}
-        // >
-        //   Monitor
-        // </a>,
-      ],
-      hideInSearch: true,
-    },
-  ];
+    })),
+  );
   return (
     <PageContainer>
       <ProTable

@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getMessaging } from "firebase/messaging";
+import { initializeApp } from 'firebase/app';
+import { getMessaging } from 'firebase/messaging';
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -8,19 +8,18 @@ import { getMessaging } from "firebase/messaging";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyARG5SuaBFkyxXjyHBGzzGMH30cq4LrELo",
-  authDomain: "vnpt-web-push.firebaseapp.com",
-  databaseURL: "https://vnpt-web-push-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "vnpt-web-push",
-  storageBucket: "vnpt-web-push.appspot.com",
-  messagingSenderId: "784077660924",
-  appId: "1:784077660924:web:279f40bd28cbce461fed79",
-  measurementId: "G-CB0MYN14NE"
+  apiKey: 'AIzaSyARG5SuaBFkyxXjyHBGzzGMH30cq4LrELo',
+  authDomain: 'vnpt-web-push.firebaseapp.com',
+  databaseURL: 'https://vnpt-web-push-default-rtdb.asia-southeast1.firebasedatabase.app',
+  projectId: 'vnpt-web-push',
+  storageBucket: 'vnpt-web-push.appspot.com',
+  messagingSenderId: '784077660924',
+  appId: '1:784077660924:web:4206ea16b9b308891fed79',
+  measurementId: 'G-5NN4SNKEHX',
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 
 // const analytics = getAnalytics(app);
 export const messaging = getMessaging(app);
