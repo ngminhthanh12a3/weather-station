@@ -4,6 +4,7 @@ import numeral from 'numeral';
 import { useModel } from 'umi';
 import styles from '../index.less';
 import NumberInfo from './NumberInfo';
+import SensorBullet from './SensorBullet';
 
 const { Text } = Typography;
 
@@ -64,7 +65,7 @@ export default ({ activeKey, handleTabChange }) => {
               }
             >
               <div style={{ padding: '0 24px' }}>
-                <Line
+                {/* <Line
                   forceFit
                   height={400}
                   data={currentChartData[_enum] || []}
@@ -82,7 +83,8 @@ export default ({ activeKey, handleTabChange }) => {
                     position: 'top-center',
                   }}
                   animation={false}
-                />
+                /> */}
+                <SensorBullet sensorData={currentDeviceInfo} />
               </div>
             </TabPane>
           );

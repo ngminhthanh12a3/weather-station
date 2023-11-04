@@ -174,6 +174,7 @@ export default ({ sensorData = {} }) => {
               },
             }}
             color={{ measure: measureColor, range: ['#bfeec8', '#FFbcb8'], target: '#3D76DD' }}
+            animation={false}
           />
         );
       })}
